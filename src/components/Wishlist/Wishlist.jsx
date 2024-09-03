@@ -12,43 +12,36 @@ import { CartContext } from "../../Context/CartContext";
 import { WishlistClassContext } from "../../Context/WishlistClassContext";
 
 export default function Wishlist() {
-  const [wishProduct, setWishProduct] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  let { getProductinWishlist, deleteProductinWishlist, addProductWishlist } =
-    useContext(WishlistContext);
+  const { addProductCart } = useContext(CartContext);
 
-  async function getWishlist() {
-    let response = await getProductinWishlist();
-    console.log(response?.data?.data);
-    setWishProduct(response?.data?.data);
-    setIsLoading(false);
-  }
-
-  let { addProductCart } = useContext(CartContext);
   async function addToCart(productId) {
     let res = await addProductCart(productId);
     console.log(res);
   }
 
-  let { wishlist, setWishlist } = useContext(WishlistClassContext);
+  const { getProductinWishlist, deleteProductinWishlist } =
+    useContext(WishlistContext);
 
-  async function toggleWishlist(productId) {
-    if (wishlist[productId]) {
-      await removeFromWishlist(productId);
-    } else {
-      await addToWishlist(productId);
-    }
-  }
+  const { wishlist, setWishlist } = useContext(WishlistClassContext);
 
-  async function addToWishlist(productId) {
-    let res = await addProductWishlist(productId);
-    console.log(res?.data?.data);
-    setWishlist((prev) => ({ ...prev, [productId]: true }));
-  }
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      const response = await getProductinWishlist();
+      const wishlistData = response?.data?.data.reduce((acc, product) => {
+        acc[product._id] = product;
+        return acc;
+      }, {});
+      setWishlist(wishlistData);
+      setIsLoading(false);
+    };
+    fetchWishlist();
+  }, [getProductinWishlist, setWishlist]);
 
   async function removeFromWishlist(productId) {
     let res = await deleteProductinWishlist(productId);
-    console.log(res?.data?.data);
+    console.log(res.data.data);
     setWishlist((prev) => {
       const updatedWishlist = { ...prev };
       delete updatedWishlist[productId];
@@ -87,95 +80,98 @@ export default function Wishlist() {
     );
   };
 
-  useEffect(() => {
-    getWishlist();
-  }, []);
   return (
     <>
-      <div className="p-4 sm:ml-64 md:h-screen h-full">
-        <div className="container 2xl:mx-auto">
-      <div
+      <div className="p-4 sm:ml-64 h-full">
+        <div
           className="text-4xl md:text-5xl h-1/3 md:ms-10 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
           id="animation-register"
         >
-          <h1>Wishlist <FontAwesomeIcon icon={faHeart} /></h1>
+          <h1>
+            WishList <FontAwesomeIcon icon={faHeart} />
+          </h1>
         </div>
+        <div className="container 2xl:mx-auto">
           <div className="row">
             <div className="flex flex-wrap justify-center items-center">
               {isLoading ? (
                 FullScreenLoader()
+              ) : wishlist.length === 0 ? (
+                <p className="text-gray-900 dark:text-white">
+                  Your wishlist is empty.
+                </p>
               ) : (
-                <>
-                  {wishProduct.map((product) => (
-                    <div key={product?.id} className="px-2 pb-3 mb-2">
-                      <div className="w-full max-w-80 sm:max-w-60 bg-white border rounded-lg shadow dark:bg-[#647A67] dark:border-[#1F241F] hover:scale-105 transition-all duration-500">
-                        <Link
-                          to={`/productdetails/${product?.id}/${product?.category?.name}`}
+                Object.values(wishlist).map((product) => (
+                  <div key={product?._id} className="px-2 pb-3 mb-2">
+                    <div className="w-full max-w-80 sm:max-w-60 bg-white border rounded-lg shadow dark:bg-[#647A67] dark:border-[#1F241F] hover:scale-105 transition-all duration-500">
+                      <Link
+                        to={`/productdetails/${product?._id}/${product?.category?.name}`}
+                      >
+                        <div className="p-5">
+                          <img
+                            className="rounded-md"
+                            src={product?.imageCover}
+                            alt={product?.title}
+                          />
+                        </div>
+                      </Link>
+                      <div className="px-5 pb-5">
+                        <div
+                          id="Title"
+                          className="flex justify-between items-center"
                         >
-                          <div className="p-5">
-                            <img
-                              className="rounded-md"
-                              src={product?.imageCover}
-                              alt={product?.title}
-                            />
-                          </div>
-                        </Link>
-                        <div className="px-5 pb-5">
-                          <div
-                            id="Title"
-                            className="flex justify-between items-center"
+                          <Link
+                            to={`/productdetails/${product?._id}/${product?.category?.name}`}
                           >
-                            <Link
-                              to={`/productdetails/${product?.id}/${product?.category?.name}`}
-                            >
-                              <h5 className="text-xl font-[Roboto-Bold] tracking-tight text-gray-900 dark:text-white">
-                                {product?.title.split("").slice(0, 14).join("")}
-                              </h5>
-                              <h5 className="mt-1 text-white bg-[#758173] font-[Roboto-Regular] rounded-lg text-xs md:text-sm px-2 py-1.5 text-center w-fit">
-                                {product?.category?.name}
-                              </h5>
-                            </Link>
-                            <button onClick={() => toggleWishlist(product?.id)}>
-                              <FontAwesomeIcon
-                                className={`text-xl cursor-pointer ${
-                                  wishlist[product?.id]
-                                    ? "text-red-600"
-                                    : "animation-wilshite text_shadow text-transparent"
-                                }`}
-                                icon={faHeart}
-                              />
-                            </button>
+                            <h5 className="text-xl font-[Roboto-Bold] tracking-tight text-gray-900 dark:text-white">
+                              {product?.title.split("").slice(0, 14).join("")}
+                            </h5>
+                            <h5 className="mt-1 text-white bg-[#758173] font-[Roboto-Regular] rounded-lg text-xs md:text-sm px-2 py-1.5 text-center w-fit">
+                              {product?.category?.name}
+                            </h5>
+                          </Link>
+                          <button
+                            onClick={() => removeFromWishlist(product?._id)}
+                          >
+                            <FontAwesomeIcon
+                              className={`text-xl cursor-pointer ${
+                                wishlist[product?._id]
+                                  ? "text-red-600"
+                                  : "animation-wilshite text_shadow text-transparent"
+                              }`}
+                              icon={faHeart}
+                            />
+                          </button>
+                        </div>
+                        <div className="flex items-center mt-2.5 mb-5">
+                          <div className="flex items-center space-x-1 rtl:space-x-reverse">
+                            {getStarRating(product?.ratingsAverage)}
                           </div>
-                          <div className="flex items-center mt-2.5 mb-5">
-                            <div className="flex items-center space-x-1 rtl:space-x-reverse">
-                              {getStarRating(product?.ratingsAverage)}
-                            </div>
-                            <span className="text-white text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-[#3C433B] dark:text-white ms-3">
-                              {product?.ratingsAverage}
+                          <span className="text-white text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-[#3C433B] dark:text-white ms-3">
+                            {product?.ratingsAverage}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-[Roboto-Bold] max-text-3xl font-bold text-gray-900 dark:text-white">
+                            <span className="text-gray-300 text-xs md:text-sm">
+                              EGP{" "}
                             </span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className="font-[Roboto-Bold] max-text-3xl font-bold text-gray-900 dark:text-white">
-                              <span className="text-gray-300 text-xs md:text-sm">
-                                EGP{" "}
-                              </span>
-                              {product?.price.toLocaleString()}
-                              <span className="text-gray-300 text-xs md:text-sm">
-                                {product?.price % 10 === 9 ? ".99" : ".00"}
-                              </span>
+                            {product?.price.toLocaleString()}
+                            <span className="text-gray-300 text-xs md:text-sm">
+                              {product?.price % 10 === 9 ? ".99" : ".00"}
                             </span>
-                            <button
-                              onClick={() => addToCart(product?.id)}
-                              className="text-white bg-[#1F241F] hover:bg-[#758173] transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-[#1F241F] font-medium rounded-lg text-sm px-2 py-1.5 text-center dark:bg-[#1F241F] dark:hover:bg-[#758173] dark:focus:ring-[#8FA38A]"
-                            >
-                              Add to cart
-                            </button>
-                          </div>
+                          </span>
+                          <button
+                            onClick={() => addToCart(product?._id)}
+                            className="text-white bg-[#1F241F] hover:bg-[#758173] transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-[#1F241F] font-medium rounded-lg text-sm px-2 py-1.5 text-center dark:bg-[#1F241F] dark:hover:bg-[#758173] dark:focus:ring-[#8FA38A]"
+                          >
+                            Add to cart
+                          </button>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </>
+                  </div>
+                ))
               )}
             </div>
           </div>

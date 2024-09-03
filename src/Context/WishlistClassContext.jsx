@@ -9,7 +9,6 @@ export default function WishlistClassContextProvider(props) {
     const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || {};
     setWishlist(savedWishlist);
   }, []);
-  
 
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));

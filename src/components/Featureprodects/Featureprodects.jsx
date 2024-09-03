@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import FullScreenLoader from "../Loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,16 +16,29 @@ import { WishlistContext } from "../../Context/WishlistContext";
 import { WishlistClassContext } from "../../Context/WishlistClassContext";
 
 export default function FeatureProducts() {
-  let { addProductCart } = useContext(CartContext);
+  const { addProductCart } = useContext(CartContext);
+
   async function addToCart(productId) {
     let res = await addProductCart(productId);
     console.log(res);
   }
 
-  let { addProductWishlist, deleteProductinWishlist } =
+  const { addProductWishlist, deleteProductinWishlist, getProductinWishlist } =
     useContext(WishlistContext);
 
-  let { wishlist, setWishlist } = useContext(WishlistClassContext);
+  const { wishlist, setWishlist } = useContext(WishlistClassContext);
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      const response = await getProductinWishlist();
+      const wishlistData = response?.data?.data.reduce((acc, product) => {
+        acc[product._id] = true;
+        return acc;
+      }, {});
+      setWishlist(wishlistData);
+    };
+    fetchWishlist();
+  }, [getProductinWishlist, setWishlist]);
 
   async function toggleWishlist(productId) {
     if (wishlist[productId]) {
@@ -83,7 +96,7 @@ export default function FeatureProducts() {
   };
 
   const [page, setPage] = useState(1);
-  
+
   function getProducts(page) {
     return axios.get(
       `https://ecommerce.routemisr.com/api/v1/products?page=${page}`
@@ -109,10 +122,10 @@ export default function FeatureProducts() {
             ) : (
               <>
                 {products.map((product) => (
-                  <div key={product?.id} className="px-2 pb-3 mb-2">
+                  <div key={product?._id} className="px-2 pb-3 mb-2">
                     <div className="w-full max-w-80 sm:max-w-60 bg-white border rounded-lg shadow dark:bg-[#647A67] dark:border-[#1F241F] hover:scale-105 transition-all duration-500">
                       <Link
-                        to={`/productdetails/${product?.id}/${product?.category?.name}`}
+                        to={`/productdetails/${product?._id}/${product?.category?.name}`}
                       >
                         <div className="p-5">
                           <img
@@ -128,7 +141,7 @@ export default function FeatureProducts() {
                           className="flex justify-between items-center"
                         >
                           <Link
-                            to={`/productdetails/${product?.id}/${product?.category?.name}`}
+                            to={`/productdetails/${product?._id}/${product?.category?.name}`}
                           >
                             <h5 className="text-xl font-[Roboto-Bold] tracking-tight text-gray-900 dark:text-white">
                               {product?.title.split("").slice(0, 14).join("")}
@@ -137,10 +150,10 @@ export default function FeatureProducts() {
                               {product?.category?.name}
                             </h5>
                           </Link>
-                          <button onClick={() => toggleWishlist(product?.id)}>
+                          <button onClick={() => toggleWishlist(product?._id)}>
                             <FontAwesomeIcon
                               className={`text-xl cursor-pointer ${
-                                wishlist[product?.id]
+                                wishlist[product?._id]
                                   ? "text-red-600"
                                   : "animation-wilshite text_shadow text-transparent"
                               }`}
@@ -167,7 +180,7 @@ export default function FeatureProducts() {
                             </span>
                           </span>
                           <button
-                            onClick={() => addToCart(product?.id)}
+                            onClick={() => addToCart(product?._id)}
                             className="text-white bg-[#1F241F] hover:bg-[#758173] transition-all duration-300 focus:ring-4 focus:outline-none focus:ring-[#1F241F] font-medium rounded-lg text-sm px-2 py-1.5 text-center dark:bg-[#1F241F] dark:hover:bg-[#758173] dark:focus:ring-[#8FA38A]"
                           >
                             Add to cart

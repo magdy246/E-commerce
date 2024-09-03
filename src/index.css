@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'Oswald-V';
+  src: url('./assets/fonts/Oswald/Oswald-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Black';
+  src: url('./assets/fonts/Roboto/Roboto-Black.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-BlackItalic';
+  src: url('./assets/fonts/Roboto/Roboto-BlackItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('./assets/fonts/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-BoldItalic';
+  src: url('./assets/fonts/Roboto/Roboto-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Italic';
+  src: url('./assets/fonts/Roboto/Roboto-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url('./assets/fonts/Roboto/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-LightItalic';
+  src: url('./assets/fonts/Roboto/Roboto-LightItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url('./assets/fonts/Roboto/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-MediumItalic';
+  src: url('./assets/fonts/Roboto/Roboto-MediumItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Thin';
+  src: url('./assets/fonts/Roboto/Roboto-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-ThinItalic';
+  src: url('./assets/fonts/Roboto/Roboto-ThinItalic.ttf');
+}
+
+:root {
+  /*!!!!!!!!!!!!! COLORs !!!!!!!!!!!!!*/
+  --Black-color: #020402;
+  --Eerie-Black-color: #1F241F;
+  --Black-Olive-color: #3C433B;
+  --Tea-Green1-color: #C5EFCB;
+  --Tea-Green2-color: #C6DEC6;
+  --Reseda-Green1-color: #647A67;
+  --Reseda-Green2-color: #758173;
+  --Cambridge-Blue-color: #8FA38A;
+  --Celadon1-color: #8FA38A;
+  --Celadon2-color: #B8D2B3;
+  /*!!!!!!!!!!!!! FONTSs !!!!!!!!!!!!!*/
+  --Oswald-V: 'Oswald-V';
+  --Roboto-Black: 'Roboto-Black';
+  --Roboto-BlackItalic: 'Roboto-BlackItalic';
+  --Roboto-Bold: 'Roboto-Bold';
+  --Roboto-BoldItalic: 'Roboto-BoldItalic';
+  --Roboto-Italic: 'Roboto-Italic';
+  --Roboto-Light: 'Roboto-Light';
+  --Roboto-LightItalic: 'Roboto-LightItalic';
+  --Roboto-Medium: 'Roboto-Medium';
+  --Roboto-MediumItalic: 'Roboto-MediumItalic';
+  --Roboto-Regular: 'Roboto-Regular';
+  --Roboto-Thin: 'Roboto-Thin';
+  --Roboto-ThinItalic: 'Roboto-ThinItalic';
+}
+
+body {
+  background-image: url(../src/assets/light-patten.svg);
+  background-color: var(--Celadon2-color);
+}
+
+.active {
+  background-color: var(--Reseda-Green1-color);
+}
+
+.highet-screen {
+  height: 78vh;
+}
+
+@media (max-width:350px) {
+  .highet-screen {
+    height: 70vh;
+  }
+}
+
+#animation-register {
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: shadow-throb;
+  animation-timing-function: linear;
+}
+
+@keyframes shadow-throb {
+  0% {
+    box-shadow:
+      0px 0px 0px 0px var(--Reseda-Green2-color),
+      0px 0px 0px 0px var(--Reseda-Green2-color),
+      0px 0px 0px 0px var(--Reseda-Green2-color);
+  }
+
+  15% {
+    box-shadow:
+      0px 0px 0px 0px var(--Reseda-Green2-color),
+      0px 0px 0px 0px var(--Reseda-Green2-color),
+      0px 0px 0px 5px var(--Reseda-Green2-color);
+  }
+
+  30% {
+    box-shadow:
+      0px 0px 0px 0px var(--Reseda-Green2-color),
+      0px 0px 0px 5px var(--Reseda-Green2-color),
+      0px 0px 0px 10px var(--Celadon1-color);
+  }
+
+  45% {
+    box-shadow:
+      0px 0px 0px 5px var(--Reseda-Green2-color),
+      0px 0px 0px 10px var(--Celadon1-color),
+      0px 0px 0px 15px var(--Celadon2-color);
+  }
+
+  60% {
+    box-shadow:
+      0px 0px 0px 10px var(--Celadon1-color),
+      0px 0px 0px 15px var(--Celadon2-color),
+      0px 0px 15px 15px #007cff00;
+  }
+
+  75% {
+    box-shadow:
+      0px 0px 0px 15px var(--Celadon2-color),
+      0px 0px 15px 15px #007cff00,
+      0px 0px 15px 15px #007cff00;
+  }
+
+  90% {
+    box-shadow:
+      0px 0px 15px 15px #007cff00,
+      0px 0px 15px 15px #007cff00,
+      0px 0px 15px 15px #007cff00;
+  }
+
+  100% {
+    box-shadow:
+      0px 0px 15px 15px #007cff00,
+      0px 0px 15px 15px #007cff00,
+      0px 0px 15px 15px #007cff00;
+  }
+}
+
+#animation-payment {
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: shadow-pay;
+  animation-timing-function: linear;
+}
+
+@keyframes shadow-pay {
+  0% {
+    transform: scale(1.04);
+  }
+
+  15% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.04);
+  }
+
+  45% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.04);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animation-wilshite {
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: shadow-th;
+  animation-timing-function: linear;
+}
+
+@keyframes shadow-th {
+  0% {
+    stroke: black;
+    stroke-width: 5px;
+  }
+
+  15% {
+    stroke: black;
+    stroke-width: 15px;
+    ;
+  }
+
+  30% {
+    stroke: black;
+    stroke-width: 25px;
+  }
+
+  45% {
+    stroke: black;
+    stroke-width: 30px;
+  }
+
+  60% {
+    stroke: black;
+    stroke-width: 35px;
+  }
+
+  75% {
+    stroke: black;
+    stroke-width: 40px;
+  }
+
+  90% {
+    stroke: black;
+    stroke-width: 45px;
+  }
+
+  100% {
+    stroke: black;
+    stroke-width: 50px;
+  }
+}

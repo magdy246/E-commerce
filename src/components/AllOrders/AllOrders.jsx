@@ -4,10 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import FullScreenLoader from "../Loader/Loader";
 import { Link } from "react-router-dom";
+import {jwtDecode} from "jwt-decode"
 
 export default function AllOrders() {
+  let {id} = jwtDecode(localStorage.getItem("user"))
+  
+
   function getAllorders() {
-    return axios.get(`https://ecommerce.routemisr.com/api/v1/orders`);
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`);
   }
 
   const { isLoading, data } = useQuery({
@@ -15,7 +19,7 @@ export default function AllOrders() {
     queryFn: getAllorders,
   });
 
-  const orders = data?.data?.data;
+  const orders = data?.data
   console.log(orders);
 
   return (
@@ -58,7 +62,7 @@ export default function AllOrders() {
                   </span>
                 </p>
                 <p className="text-[#020402] mb-1">
-                  Status:<span className="text-[#647A67]"> {"Paid"}</span>
+                  Payment Method:<span className="text-[#647A67]"> {order.paymentMethodType}</span>
                 </p>
                 <p className="text-[#020402] mb-4">
                   Date:{" "}

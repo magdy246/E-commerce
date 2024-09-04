@@ -18,7 +18,7 @@ export default function NewPassword() {
       .required("Email is required...!")
       .email("Invalid email address...!"),
 
-      newPassword: Yup.string()
+    newPassword: Yup.string()
       .required("Password is required...!")
       .min(6, "Password should be at least 6 characters long...!"),
   });
@@ -39,19 +39,16 @@ export default function NewPassword() {
       .put("https://ecommerce.routemisr.com/api/v1/auth/resetPassword", values)
       .then((data) => {
         setUsermsg(data?.data?.statusMsg);
-        localStorage.setItem("user", data?.data?.token);
-        setUserToken(data?.data?.token);
         setLoading(false);
-        navigate("/login");
+        if (data.data.token) {
+          navigate("/login");
+        }
       })
       .catch((error) => {
         setErrormsg(error?.response?.data?.statusMsg);
         setLoading(false);
       });
   }
-
-  let { userToken, setUserToken } = useContext(TokenContext);
-  console.log(userToken);
 
   return (
     <>
@@ -117,12 +114,12 @@ export default function NewPassword() {
           ) : (
             <>
               <div className="flex flex-col justify-between">
-                  <button
-                    type="submit"
-                    className="text-[#1F241F] bg-[#647A67] hover:bg-[#758173] focus:bg-[#647A67] focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-                  >
-                    Submit
-                  </button>
+                <button
+                  type="submit"
+                  className="text-[#1F241F] bg-[#647A67] hover:bg-[#758173] focus:bg-[#647A67] focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                >
+                  Submit
+                </button>
               </div>
             </>
           )}

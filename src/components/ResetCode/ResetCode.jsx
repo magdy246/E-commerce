@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { TokenContext } from "../../Context/TokenContext";
 
 export default function ResetCode() {
   const [usermsg, setUsermsg] = useState("");
@@ -30,8 +29,6 @@ export default function ResetCode() {
       )
       .then((data) => {
         setUsermsg(data?.data?.status);
-        localStorage.setItem("user", data?.data?.token);
-        setUserToken(data?.data?.token);
         setLoading(false);
         navigate("/newpassword");
       })
@@ -40,9 +37,6 @@ export default function ResetCode() {
         setLoading(false);
       });
   }
-
-  let { userToken, setUserToken } = useContext(TokenContext);
-  console.log(userToken);
 
   return (
     <>

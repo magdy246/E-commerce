@@ -1,11 +1,10 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { TokenContext } from "../../Context/TokenContext";
 
 export default function ForgetPassword() {
   const [usermsg, setUsermsg] = useState("");
@@ -37,8 +36,6 @@ export default function ForgetPassword() {
       )
       .then((data) => {
         setUsermsg(data?.data?.message);
-        localStorage.setItem("user", data?.data?.token);
-        setUserToken(data?.data?.token);
         setLoading(false);
         navigate("/resetcode");
       })
@@ -47,9 +44,6 @@ export default function ForgetPassword() {
         setLoading(false);
       });
   }
-
-  let { userToken, setUserToken } = useContext(TokenContext);
-  console.log(userToken);
 
   return (
     <>

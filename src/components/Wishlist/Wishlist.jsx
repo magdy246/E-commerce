@@ -82,7 +82,7 @@ export default function Wishlist() {
 
   return (
     <>
-      <div className="p-4 sm:ml-64 h-screen">
+      <div className="p-4 sm:ml-64 h-full">
         <div className="container 2xl:mx-auto">
           <div
             className="text-4xl md:text-5xl h-1/3 md:ms-10 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"

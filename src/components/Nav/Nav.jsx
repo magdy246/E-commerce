@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightToBracket,
+  faBasketShopping,
   faCartShopping,
   faDolly,
   faHeart,
@@ -209,6 +210,23 @@ export default function Nav() {
                         </span>
                       </NavLink>
                     </li>
+                    <li>
+                      <NavLink
+                        onClick={handleItemClick}
+                        to="allorders"
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
+                      >
+                        <span
+                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                          aria-hidden="true"
+                        >
+                          <FontAwesomeIcon icon={faBasketShopping} />
+                        </span>
+                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
+                          All orders
+                        </span>
+                      </NavLink>
+                    </li>
                   </div>
                   <div>
                     <li>
@@ -223,7 +241,7 @@ export default function Nav() {
                           <FontAwesomeIcon icon={faRightFromBracket} />
                         </span>
                         <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Log Out
+                          Sign Out
                         </span>
                       </a>
                     </li>

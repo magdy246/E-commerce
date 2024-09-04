@@ -35,14 +35,14 @@ export default function Login() {
 
   async function loginForm(values) {
     setLoading(true);
-    return await axios
+    await axios
       .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
-      .then((data) => {
-        setUsermsg(data.data.message);
-        localStorage.setItem("user", data.data.token);
-        setUserToken(data.data.token);
+      .then((response) => {
+        setUsermsg(response.data.message);
+        localStorage.setItem("user", response.data.token);
+        setUserToken(response.data.token);
         setLoading(false);
-        navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         setErrormsg(error.response.data.message);
@@ -60,7 +60,9 @@ export default function Login() {
           className="text-4xl md:text-5xl md:ms-10 px-3 pb-2 mb-11 font-[Roboto-Bold] text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
           id="animation-register"
         >
-          <h1>Login <FontAwesomeIcon icon={faRightToBracket} /></h1>
+          <h1>
+            Login <FontAwesomeIcon icon={faRightToBracket} />
+          </h1>
         </div>
         <form onSubmit={formik.handleSubmit} className="max-w-prose mx-auto">
           <div className="mb-5">

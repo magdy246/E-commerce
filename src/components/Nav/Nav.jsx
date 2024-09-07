@@ -19,7 +19,18 @@ import { CartContext } from "../../Context/CartContext";
 import { jwtDecode } from "jwt-decode";
 
 export default function Nav() {
-  let {name} = jwtDecode(localStorage.getItem("user"));
+  let name = "Guest";
+
+  try {
+    const token = localStorage.getItem("user");
+    if (token) {
+      const decoded = jwtDecode(token);
+      name = decoded.name || "Guest";
+    }
+  } catch (error) {
+    console.error("Invalid token:", error);
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef(null);
   let { numOfCart, getProductinCart } = useContext(CartContext);
@@ -27,6 +38,7 @@ export default function Nav() {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   const handleClickOutside = (event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -48,6 +60,7 @@ export default function Nav() {
 
   let { userToken, setUserToken } = useContext(TokenContext);
   let navigate = useNavigate();
+
   function logOut() {
     localStorage.removeItem("user");
     setUserToken(null);
@@ -105,7 +118,7 @@ export default function Nav() {
             {userToken ? (
               <>
                 <h1 className=" mb-14 text-center text-2xl font-[RobotoSlab-B] rounded-2xl py-2 shadow-black shadow-lg">
-                  welcome {name.split(" ").slice(0, 1).join("")}
+                  Welcome {name}
                 </h1>
                 <div className="flex flex-col justify-between">
                   <div className="mb-28 md:mb-20">
@@ -227,7 +240,7 @@ export default function Nav() {
                           <FontAwesomeIcon icon={faBasketShopping} />
                         </span>
                         <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          All orders
+                          All Orders
                         </span>
                       </NavLink>
                     </li>
@@ -235,7 +248,7 @@ export default function Nav() {
                   <div>
                     <li>
                       <a
-                        onClick={() => logOut()}
+                        onClick={logOut}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500 cursor-pointer"
                       >
                         <span

@@ -20,7 +20,6 @@ export default function FeatureProducts() {
 
   async function addToCart(productId) {
     let res = await addProductCart(productId);
-    console.log(res);
   }
 
   const { addProductWishlist, deleteProductinWishlist, getProductinWishlist } =
@@ -50,13 +49,11 @@ export default function FeatureProducts() {
 
   async function addToWishlist(productId) {
     let res = await addProductWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => ({ ...prev, [productId]: true }));
   }
 
   async function removeFromWishlist(productId) {
     let res = await deleteProductinWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => {
       const updatedWishlist = { ...prev };
       delete updatedWishlist[productId];
@@ -110,7 +107,6 @@ export default function FeatureProducts() {
   });
 
   const products = data?.data?.data;
-  console.log(products);
 
   return (
     <>

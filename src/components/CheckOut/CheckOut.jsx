@@ -13,7 +13,6 @@ export default function CheckOut() {
 
   const { onlinPayment, cashPayment } = useContext(CartContext);
   let { state } = useLocation();
-  console.log(state.type);
   useEffect(() => {
     setPaymentType(state.type);
   }, []);

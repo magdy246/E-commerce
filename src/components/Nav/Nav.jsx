@@ -16,8 +16,10 @@ import cartImg from "../../assets/Cart.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { TokenContext } from "../../Context/TokenContext";
 import { CartContext } from "../../Context/CartContext";
+import { jwtDecode } from "jwt-decode";
 
 export default function Nav() {
+  let jwt = jwtDecode(localStorage.getItem("user"));
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef(null);
   let { numOfCart, getProductinCart } = useContext(CartContext);
@@ -45,7 +47,6 @@ export default function Nav() {
   }, []);
 
   let { userToken, setUserToken } = useContext(TokenContext);
-  // console.log(token);
   let navigate = useNavigate();
   function logOut() {
     localStorage.removeItem("user");
@@ -103,8 +104,11 @@ export default function Nav() {
           <ul className="space-y-2 font-medium">
             {userToken ? (
               <>
-                <div className="flex flex-col justify-between highet-screen">
-                  <div>
+                <h1 className=" mb-14 text-center text-2xl font-[RobotoSlab-B] rounded-2xl py-2 shadow-black shadow-lg">
+                  welcome {jwt.name.split(" ").slice(0, 1).join("")}
+                </h1>
+                <div className="flex flex-col justify-between">
+                  <div className="mb-28 md:mb-20">
                     <li>
                       <NavLink
                         onClick={handleItemClick}

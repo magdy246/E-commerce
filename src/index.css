@@ -14,6 +14,16 @@
 }
 
 @font-face {
+  font-family: 'RobotoSlab-B';
+  src: url('./assets/fonts/Roboto/RobotoSlab-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoSlab-EB';
+  src: url('./assets/fonts/Roboto/RobotoSlab-ExtraBold.ttf');
+}
+
+@font-face {
   font-family: 'Roboto-Black';
   src: url('./assets/fonts/Roboto/Roboto-Black.ttf');
 }
@@ -87,6 +97,8 @@
   --Celadon2-color: #B8D2B3;
   /*!!!!!!!!!!!!! FONTSs !!!!!!!!!!!!!*/
   --Oswald-V: 'Oswald-V';
+  --RobotoSlab-B: 'RobotoSlab-B';
+  --RobotoSlab-EB: 'RobotoSlab-EB';
   --Roboto-Black: 'Roboto-Black';
   --Roboto-BlackItalic: 'Roboto-BlackItalic';
   --Roboto-Bold: 'Roboto-Bold';
@@ -120,6 +132,12 @@ body {
   }
 }
 
+.animation-wilshite{
+  stroke: black;
+  stroke-width: 40px;
+}
+
+/* 
 #animation-register {
   animation-duration: 3s;
   animation-fill-mode: both;
@@ -277,4 +295,4 @@ body {
     stroke: black;
     stroke-width: 50px;
   }
-}
+} */

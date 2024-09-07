@@ -14,7 +14,6 @@ export default function Brands() {
     queryFn: getBrands,
   });
   let brands = data?.data?.data;
-  console.log(brands);
     
 
   return (

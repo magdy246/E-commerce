@@ -53,7 +53,6 @@ export default function Register() {
     return await axios
       .post("https://ecommerce.routemisr.com/api/v1/auth/signup", values)
       .then((data) => {
-        // !console.log(data.data.message);
         setUsermsg(data.data.message);
         setLoading(false);
         navigate("/login");
@@ -61,7 +60,6 @@ export default function Register() {
       .catch((error) => {
         setErrormsg(error.response.data.message);
         setLoading(false);
-        // !console.log(error.response.data.message);
       });
   }
 

@@ -16,7 +16,6 @@ export default function Wishlist() {
 
   async function addToCart(productId) {
     let res = await addProductCart(productId);
-    console.log(res);
   }
 
   const { getProductinWishlist, deleteProductinWishlist } =
@@ -41,7 +40,6 @@ export default function Wishlist() {
 
   async function removeFromWishlist(productId) {
     let res = await deleteProductinWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => {
       const updatedWishlist = { ...prev };
       delete updatedWishlist[productId];

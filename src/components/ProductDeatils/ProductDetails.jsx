@@ -23,10 +23,8 @@ export default function ProductDetails() {
   function addToCart(productId) {
     addProductCart(productId)
       .then((res) => {
-        console.log(res);
       })
       .catch((error) => {
-        console.log(error);
       });
   }
 
@@ -45,13 +43,11 @@ export default function ProductDetails() {
 
   async function addToWishlist(productId) {
     let res = await addProductWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => ({ ...prev, [productId]: true }));
   }
 
   async function removeFromWishlist(productId) {
     let res = await deleteProductinWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => {
       const updatedWishlist = { ...prev };
       delete updatedWishlist[productId];
@@ -109,7 +105,6 @@ export default function ProductDetails() {
       })
       .catch((error) => {
         setErrormsg(error.message);
-        console.log(error);
         setLoader(false);
       });
   }
@@ -125,7 +120,6 @@ export default function ProductDetails() {
       })
       .catch((error) => {
         setErrormsg(error.message);
-        console.log(error);
         setLoader(false);
       });
   }
@@ -142,7 +136,7 @@ export default function ProductDetails() {
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
   };

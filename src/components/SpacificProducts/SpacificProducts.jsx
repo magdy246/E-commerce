@@ -25,7 +25,6 @@ export default function SpecificProducts() {
 
   async function addToCart(productId) {
     let res = await addProductCart(productId);
-    console.log(res);
   }
 
   let { addProductWishlist, deleteProductinWishlist } =
@@ -43,13 +42,11 @@ export default function SpecificProducts() {
 
   async function addToWishlist(productId) {
     let res = await addProductWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => ({ ...prev, [productId]: true }));
   }
 
   async function removeFromWishlist(productId) {
     let res = await deleteProductinWishlist(productId);
-    console.log(res.data.data);
     setWishlist((prev) => {
       const updatedWishlist = { ...prev };
       delete updatedWishlist[productId];

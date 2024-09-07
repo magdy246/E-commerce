@@ -19,7 +19,7 @@ import { CartContext } from "../../Context/CartContext";
 import { jwtDecode } from "jwt-decode";
 
 export default function Nav() {
-  let jwt = jwtDecode(localStorage.getItem("user"));
+  let {name} = jwtDecode(localStorage.getItem("user"));
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef(null);
   let { numOfCart, getProductinCart } = useContext(CartContext);
@@ -105,7 +105,7 @@ export default function Nav() {
             {userToken ? (
               <>
                 <h1 className=" mb-14 text-center text-2xl font-[RobotoSlab-B] rounded-2xl py-2 shadow-black shadow-lg">
-                  welcome {jwt.name.split(" ").slice(0, 1).join("")}
+                  welcome {name.split(" ").slice(0, 1).join("")}
                 </h1>
                 <div className="flex flex-col justify-between">
                   <div className="mb-28 md:mb-20">

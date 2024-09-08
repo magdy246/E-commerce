@@ -59,6 +59,7 @@ export default function CartContextProvider(props) {
       .then((response) => {
         setNumOfCart(response?.data?.numOfCartItems);
         setTotalPrice(response?.data?.data?.totalCartPrice);
+        toast.error("removed");
         return response;
       })
       .catch((error) => {
@@ -93,9 +94,9 @@ export default function CartContextProvider(props) {
         headers,
       })
       .then((response) => {
-        toast.success(response?.data?.message);
         setNumOfCart(response?.data?.numOfCartItems);
         setTotalPrice(response?.data?.data?.totalCartPrice);
+        toast.error("Cart already deleted");
         return response;
       })
       .catch((error) => {

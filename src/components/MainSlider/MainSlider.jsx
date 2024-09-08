@@ -13,13 +13,15 @@ export default function MainSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 5000,
-    autoplaySpeed: 5000,
+    speed: 3000,
+    autoplaySpeed: 1000,
     arrows: false,
+    adaptiveHeight: true,
+    focusOnSelect: true,
   };
   return (
     <>
-      <div className="p-4 sm:px-0 2xl:mx-auto">
+      <div className="md:p-4 p-0 sm:px-0 2xl:mx-auto">
         <div className="container flex flex-col md:flex-row border border-black">
           <div className="md:w-3/4 w-full mb-7 md:mb-0 border border-black">
             <Slider {...settings}>

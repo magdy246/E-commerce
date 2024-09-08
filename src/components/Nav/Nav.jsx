@@ -121,7 +121,7 @@ export default function Nav() {
                   Welcome {name}
                 </h1>
                 <div className="flex flex-col justify-between">
-                  <div className="mb-28 md:mb-20">
+                  <div className="mb-48 md:mb-20">
                     <li>
                       <NavLink
                         onClick={handleItemClick}

@@ -65,7 +65,7 @@ export default function WishlistContextProvider(props) {
           delete updatedWishlist[productId];
           return updatedWishlist;
         });
-        toast.success("Product removed from wishlist");
+        toast.error("Product removed from wishlist");
         return response;
       })
       .catch(error => {

@@ -26,7 +26,7 @@ export default function AllOrders() {
     <div className="p-4 sm:ml-64 h-full bg-[#Eerie-Black-color] font-[Roboto-bold]">
       <div className="p-4 sm:px-0 2xl:mx-auto">
         <div
-          className="text-3xl md:text-5xl h-1/3 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
+          className="shadow-black shadow-lg text-3xl md:text-5xl h-1/3 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
           id="animation-register"
         >
           <h1>

@@ -45,6 +45,7 @@ export default function Cart() {
     await deleteAllCart();
     setCartitem([]);
     setIsLoading(false);
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -54,10 +55,12 @@ export default function Cart() {
     <>
       <div className="p-4 sm:ml-64 min-h-screen">
         <div
-          className="text-4xl md:text-5xl h-1/3 md:ms-10 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
+          className="shadow-black shadow-lg text-4xl md:text-5xl h-1/3 md:ms-10 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
           id="animation-register"
         >
-          <h1>Cart <FontAwesomeIcon className="text-4xl" icon={faCartShopping} /></h1>
+          <h1>
+            Cart <FontAwesomeIcon className="text-4xl" icon={faCartShopping} />
+          </h1>
         </div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           {isLoading ? (
@@ -90,7 +93,10 @@ export default function Cart() {
                 <tbody>
                   {cartitem.map((items) => (
                     <>
-                      <tr key={items?.product?.id} className="border-b dark:bg-[#3C433B] dark:border-[#647A67] dark:hover:bg-[#758173] font-[Roboto-bold]">
+                      <tr
+                        key={items?.product?.id}
+                        className="border-b dark:bg-[#3C433B] dark:border-[#647A67] dark:hover:bg-[#758173] font-[Roboto-bold]"
+                      >
                         <Link
                           to={`/productdetails/${items?.product?._id}/${items?.product?.category.name}`}
                         >

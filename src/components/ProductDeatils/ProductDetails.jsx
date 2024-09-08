@@ -139,13 +139,15 @@ export default function ProductDetails() {
     autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
+    adaptiveHeight: true,
+    focusOnSelect: true,
   };
 
   return (
     <>
       <div className="p-4 sm:ml-64 h-full">
         <div
-          className="text-4xl md:text-5xl h-1/3 md:ms-10 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
+          className="shadow-black shadow-lg text-4xl md:text-5xl h-1/3 md:ms-10 px-3 py-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
           id="animation-register"
         >
           <h1>Product Details <FontAwesomeIcon icon={faCircleInfo} /></h1>
@@ -232,7 +234,7 @@ export default function ProductDetails() {
               <>
                 <div className="flex justify-center">
                   <div
-                    className=" text-4xl md:text-5xl h-1/3 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
+                    className="shadow-black shadow-lg text-4xl md:text-5xl h-1/3 px-3 pb-2 mb-11 font-bold text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
                     id="animation-register"
                   >
                     <h1>-Related Products-</h1>

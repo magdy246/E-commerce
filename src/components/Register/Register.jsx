@@ -67,7 +67,7 @@ export default function Register() {
     <>
       <div className="p-4 sm:ml-64 h-full">
         <div
-          className="text-4xl md:text-5xl md:ms-10 px-3 pb-2 mb-11 font-[Roboto-Bold] text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
+          className="shadow-black shadow-lg text-4xl md:text-5xl md:ms-10 px-3 pb-2 mb-11 font-[Roboto-Bold] text-[#020402] bg-[#C5EFCB] w-fit rounded-lg"
           id="animation-register"
         >
           <h1>Register <FontAwesomeIcon icon={faArrowRightToBracket} /></h1>

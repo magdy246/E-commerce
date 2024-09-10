@@ -91,7 +91,7 @@ export default function Cart() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartitem.map((items) => (
+                  {cartitem?.map((items) => (
                     <>
                       <tr
                         key={items?.product?.id}

@@ -107,7 +107,7 @@ export default function CartContextProvider(props) {
   async function onlinPayment(shippingAddress) {
     return await axios
       .post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:5173`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://e-commerce-one-tau-30.vercel.app`,
         {
           shippingAddress,
         },
@@ -140,7 +140,7 @@ export default function CartContextProvider(props) {
       .then((response) => {
         setNumOfCart(response?.data?.numOfCartItems);
         setTotalPrice(response?.data?.data?.totalCartPrice);
-        window.location.href = "http://localhost:5173/allorders";
+        window.location.href = "https://e-commerce-one-tau-30.vercel.app";
         return response;
       })
       .catch((error) => {

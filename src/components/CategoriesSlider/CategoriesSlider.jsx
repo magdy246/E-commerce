@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
-export default functon CategoriesSlider() {
+export default function CategoriesSlider() {
   function getCategoriesSlider() {
     return axios.get("https://ecommerce.routemisr.com/api/v1/categories");
   }

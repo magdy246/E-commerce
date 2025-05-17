@@ -13,7 +13,7 @@ import ProtectedRouterLog from "./components/ProtectedRouterLog/ProtectedRouterL
 import ProductDetails from "./components/ProductDeatils/ProductDetails";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ToasterComponent from "./components/ToasterComponent/ToasterComponent";
 import SpacificProducts from "./components/SpacificProducts/SpacificProducts";
 import AllOrders from "./components/AllOrders/AllOrders";
@@ -23,6 +23,8 @@ import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import ResetCode from "./components/ResetCode/ResetCode";
 import NewPassword from "./components/NewPassword/NewPassword";
 import Wishlist from "./components/Wishlist/Wishlist";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   const queryClient = new QueryClient();
@@ -32,6 +34,8 @@ function App() {
       element: <Layout />,
       children: [
         { index: true, element: <ProtectedRouter><Home /></ProtectedRouter> },
+        { path: "about", element: <About /> },
+        { path: "contact", element: <Contact /> },
         { path: "login", element: <ProtectedRouterLog><Login /></ProtectedRouterLog> },
         { path: "forgetpassword", element: <ProtectedRouterLog><ForgetPassword /></ProtectedRouterLog> },
         { path: "newpassword", element: <ProtectedRouterLog><NewPassword /></ProtectedRouterLog> },

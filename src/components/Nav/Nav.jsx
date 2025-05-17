@@ -11,6 +11,8 @@ import {
   faRightFromBracket,
   faRightToBracket,
   faRocket,
+  faInfoCircle,
+  faMessage,
 } from "@fortawesome/free-solid-svg-icons";
 import cartImg from "../../assets/Cart.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -101,209 +103,147 @@ export default function Nav() {
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-[#C5EFCB]">
-          <div>
-            <img src={cartImg} className="mx-auto h-6 sm:h-11" alt="Logo" />
+        <div className="h-full px-3 py-4 overflow-y-auto bg-gradient-to-b from-[#C5EFCB] to-[#8FA38A]">
+          <div className="flex items-center justify-center mb-5 transform hover:scale-110 transition-transform duration-300">
+            <img src={cartImg} className="h-11" alt="Logo" />
           </div>
           <Link
             onClick={handleItemClick}
             to=""
-            className="flex items-center ps-2.5 mb-5"
+            className="flex items-center justify-center mb-8"
           >
-            <span className="mx-auto self-center text-2xl font-semibold font-[Oswald-V] whitespace-nowrap text-[#020402] shadow-black shadow-inner px-3 py-1 rounded-xl">
+            <span className="text-2xl font-semibold font-[Oswald-V] text-[#020402] bg-white/80 px-4 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               FreshCart
             </span>
           </Link>
-          <ul className="space-y-2 font-medium">
+
+          <div className="space-y-2">
             {userToken ? (
               <>
-                <h1 className=" mb-14 text-center text-2xl font-[RobotoSlab-B] rounded-2xl py-2 shadow-black shadow-lg">
-                  Welcome {name}
-                </h1>
-                <div className="flex flex-col justify-between">
-                  <div className="mb-48 md:mb-20">
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to=""
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-2 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faHouse} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Home
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to="cart"
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faCartShopping} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Cart
-                        </span>
-                        <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-[#3C433B] bg-blue-100 rounded-full dark:bg-[#3C433B] dark:text-white">
-                          {numOfCart}
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to="categories"
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faLayerGroup} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Categories
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to="products"
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faDolly} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Products
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to="brands"
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faRocket} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Brands
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to="wishlist"
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faHeart} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Wishlist
-                        </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleItemClick}
-                        to="allorders"
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faBasketShopping} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          All Orders
-                        </span>
-                      </NavLink>
-                    </li>
-                  </div>
-                  <div>
-                    <li>
-                      <a
-                        onClick={logOut}
-                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500 cursor-pointer"
-                      >
-                        <span
-                          className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                          aria-hidden="true"
-                        >
-                          <FontAwesomeIcon icon={faRightFromBracket} />
-                        </span>
-                        <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                          Sign Out
-                        </span>
-                      </a>
-                    </li>
+                <div className="bg-white/30 rounded-xl p-4 mb-8 text-center">
+                  <h1 className="text-2xl font-[RobotoSlab-B] text-[#3C433B]">
+                    Welcome {name}
+                  </h1>
+                </div>
+
+                <div className="space-y-2">
+                  <NavLink
+                    to=""
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faHouse} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Home</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="cart"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faCartShopping} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Cart</span>
+                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-[#3C433B] bg-blue-100 rounded-full dark:bg-[#3C433B] dark:text-white">
+                      {numOfCart}
+                    </span>
+                  </NavLink>
+
+                  <NavLink
+                    to="categories"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faLayerGroup} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Categories</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="products"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faDolly} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Products</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="brands"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faRocket} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Brands</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="wishlist"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faHeart} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Wishlist</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="allorders"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faBasketShopping} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">All Orders</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="about"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faInfoCircle} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">About</span>
+                  </NavLink>
+
+                  <NavLink
+                    to="contact"
+                    onClick={handleItemClick}
+                    className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faMessage} className="w-5 h-5" />
+                    <span className="ml-3 font-[Roboto-Bold]">Contact</span>
+                  </NavLink>
+
+                  <div className="pt-8">
+                    <button
+                      onClick={logOut}
+                      className="flex items-center w-full p-3 text-[#020402] rounded-lg hover:bg-red-100 transition-all duration-300"
+                    >
+                      <FontAwesomeIcon icon={faRightFromBracket} className="w-5 h-5" />
+                      <span className="ml-3 font-[Roboto-Bold]">Sign Out</span>
+                    </button>
                   </div>
                 </div>
               </>
             ) : (
-              <>
-                <li>
-                  <NavLink
-                    onClick={handleItemClick}
-                    to="register"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                  >
-                    <span
-                      className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                      aria-hidden="true"
-                    >
-                      <FontAwesomeIcon icon={faArrowRightToBracket} />
-                    </span>
-                    <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                      Sign In
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    onClick={handleItemClick}
-                    to="login"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#647A67] group transition-all duration-500"
-                  >
-                    <span
-                      className="mb-1 flex-shrink-0 w-5 h-5 text-gray-500 transition duration-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                      aria-hidden="true"
-                    >
-                      <FontAwesomeIcon icon={faRightToBracket} />
-                    </span>
-                    <span className="flex-1 ms-3 text-[#020402] whitespace-nowrap font-[Roboto-Bold]">
-                      Sign Up
-                    </span>
-                  </NavLink>
-                </li>
-              </>
+              <div className="space-y-2">
+                <NavLink
+                  to="register"
+                  onClick={handleItemClick}
+                  className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                >
+                  <FontAwesomeIcon icon={faArrowRightToBracket} className="w-5 h-5" />
+                  <span className="ml-3 font-[Roboto-Bold]">Sign In</span>
+                </NavLink>
+
+                <NavLink
+                  to="login"
+                  onClick={handleItemClick}
+                  className="flex items-center p-3 text-[#020402] rounded-lg hover:bg-white/50 transition-all duration-300"
+                >
+                  <FontAwesomeIcon icon={faRightToBracket} className="w-5 h-5" />
+                  <span className="ml-3 font-[Roboto-Bold]">Sign Up</span>
+                </NavLink>
+              </div>
             )}
-          </ul>
+          </div>
         </div>
       </aside>
     </>
